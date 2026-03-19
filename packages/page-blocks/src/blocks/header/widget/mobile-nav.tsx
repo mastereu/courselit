@@ -6,6 +6,7 @@ import { ThemeStyle } from "@courselit/page-models";
 import { Header4, Button, Drawer } from "@courselit/page-primitives";
 import PageLink from "./link";
 import { MenuIcon } from "lucide-react";
+import { messages } from "@courselit/i18n";
 
 interface MobileNavSettings {
     title: string;
@@ -92,13 +93,13 @@ const MobileNav = (props: MobileNavSettings) => {
                                     setOpen(false);
                                 }}
                                 isButton={false}
-                                label="Dashboard"
+                                label={messages.blocks.header_dashboard}
                             />
                         )}
                         <PageLink
                             theme={theme}
                             href={isGuest ? "/login" : "/logout"}
-                            label={isGuest ? "Login" : "Logout"}
+                            label={isGuest ? messages.blocks.header_login : messages.blocks.header_logout}
                             linkFontWeight={props.linkFontWeight}
                             onClick={() => {
                                 setOpen(false);

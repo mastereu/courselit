@@ -1,4 +1,6 @@
-export const DEFAULT_TITLE = "Sign up for my newsletter";
-export const DEFAULT_BTN_TEXT = "Subscribe";
-export const DEFAULT_SUCCESS_MESSAGE = "Thanks for subscribing.";
-export const DEFAULT_FAILURE_MESSAGE = "That didn't work! Please try again.";
+import { messages } from "@courselit/i18n";
+
+export const DEFAULT_TITLE = messages.blocks.email_form_default_title;
+export const DEFAULT_BTN_TEXT = messages.blocks.email_form_default_btn;
+export const DEFAULT_SUCCESS_MESSAGE = messages.blocks.email_form_default_success;
+export const DEFAULT_FAILURE_MESSAGE = messages.blocks.email_form_default_error;

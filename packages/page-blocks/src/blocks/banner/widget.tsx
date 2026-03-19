@@ -27,6 +27,7 @@ import {
     Section,
 } from "@courselit/page-primitives";
 import { ThemeStyle } from "@courselit/page-models";
+import { messages } from "@courselit/i18n";
 
 const twRoundedMap = {
     "0": "rounded-none",
@@ -163,7 +164,7 @@ export default function Widget({
             }
         } catch (e) {
             toast({
-                title: "Error",
+                title: messages.blocks.banner_error_title,
                 description: failureMessage || DEFAULT_FAILURE_MESSAGE,
                 variant: "destructive",
             });
@@ -282,7 +283,7 @@ export default function Widget({
                                                     theme={overiddenTheme}
                                                     htmlFor="email"
                                                 >
-                                                    Email
+                                                    {messages.blocks.banner_email_label}
                                                 </Label>
                                                 <Input
                                                     theme={overiddenTheme}
@@ -290,7 +291,7 @@ export default function Widget({
                                                     onChange={(e) =>
                                                         setEmail(e.target.value)
                                                     }
-                                                    placeholder="Enter your email"
+                                                    placeholder={messages.blocks.banner_email_placeholder}
                                                     type="email"
                                                     required
                                                 />
@@ -303,7 +304,7 @@ export default function Widget({
                                                     }
                                                 >
                                                     {buttonCaption ||
-                                                        "Get for free"}
+                                                        messages.blocks.banner_get_free}
                                                 </Button>
                                             </form>
                                         )}
@@ -315,14 +316,14 @@ export default function Widget({
                                     href={`/checkout?type=course&id=${product.courseId}`}
                                 >
                                     <Button theme={overiddenTheme}>
-                                        {buttonCaption || "Buy now"}
+                                        {buttonCaption || messages.blocks.banner_buy_now}
                                     </Button>
                                 </Link>
                             )}
                         {type === Constants.PageType.SITE && buttonAction && (
                             <Link href={buttonAction}>
                                 <Button theme={overiddenTheme}>
-                                    {buttonCaption || "Set a URL"}
+                                    {buttonCaption || messages.blocks.banner_set_url}
                                 </Button>
                             </Link>
                         )}
@@ -334,14 +335,14 @@ export default function Widget({
                                 >
                                     <>
                                         <Users className="w-4 h-4" />{" "}
-                                        {product.membersCount} members
+                                        {product.membersCount} {messages.blocks.banner_members}
                                     </>
                                 </Text2>
                                 <Link
                                     href={`/checkout?type=community&id=${product.communityId}`}
                                 >
                                     <Button theme={overiddenTheme}>
-                                        {buttonCaption || "Join community"}
+                                        {buttonCaption || messages.blocks.banner_join_community}
                                     </Button>
                                 </Link>
                             </div>

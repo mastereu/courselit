@@ -21,11 +21,12 @@ import {
 } from "@courselit/page-primitives";
 import Script from "next/script";
 import { ThemeStyle } from "@courselit/page-models";
+import { messages } from "@courselit/i18n";
 
 const Widget = ({
     settings: {
         title,
-        subtitle = "Sign up here to get the latest articles, news and updates.",
+        subtitle = messages.blocks.email_form_default_subtitle,
         btnText,
         alignment = "left",
         successMessage,
@@ -83,7 +84,7 @@ const Widget = ({
                 .build();
             const response = await verificationFetch.exec();
             if (!response.success) {
-                setErrorMessage("Could not verify that you are a human.");
+                setErrorMessage(messages.blocks.email_form_captcha_error);
                 setIsSubmitting(false);
                 return;
             }
@@ -105,14 +106,14 @@ const Widget = ({
             const response = await fetch.exec();
             if (response.response) {
                 toast({
-                    title: "Success",
+                    title: messages.blocks.email_form_success,
                     description: successMessage || DEFAULT_SUCCESS_MESSAGE,
                 });
                 setName("");
                 setEmail("");
             } else {
                 toast({
-                    title: "Error",
+                    title: messages.blocks.email_form_error,
                     description: failureMessage || DEFAULT_FAILURE_MESSAGE,
                 });
             }
@@ -155,14 +156,14 @@ const Widget = ({
                             htmlFor="name"
                             className="font-medium"
                         >
-                            Name
+                            {messages.blocks.email_form_name_label}
                         </Label>
                         <Input
                             theme={overiddenTheme}
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            placeholder="Enter your name"
+                            placeholder={messages.blocks.email_form_name_placeholder}
                             type="text"
                             required
                         />
@@ -173,14 +174,14 @@ const Widget = ({
                             htmlFor="email"
                             className="font-medium"
                         >
-                            Email
+                            {messages.blocks.email_form_email_label}
                         </Label>
                         <Input
                             theme={overiddenTheme}
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
+                            placeholder={messages.blocks.email_form_email_placeholder}
                             type="email"
                             required
                         />

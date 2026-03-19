@@ -1,6 +1,7 @@
 import { XCircle, Loader2, RefreshCw, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { InvoicesStatus } from "@courselit/common-models";
+import { messages } from "@courselit/i18n";
 
 interface PaymentVerificationStatusProps {
     status: InvoicesStatus;
@@ -25,14 +26,14 @@ export function PaymentVerificationStatus({
                             >
                                 <>
                                     <RefreshCw className="w-4 h-4 mr-2" />
-                                    Check status again
+                                    {messages.checkout.check_status}
                                 </>
                             </Button>
                             {!loading && (
                                 <>
                                     <Clock className="w-8 h-8 text-black-500" />
                                     <p className="text-lg font-medium">
-                                        Payment not received yet
+                                        {messages.checkout.payment_not_received}
                                     </p>
                                 </>
                             )}
@@ -40,10 +41,10 @@ export function PaymentVerificationStatus({
                                 <>
                                     <Loader2 className="w-16 h-16 text-blue-500 animate-spin" />
                                     <h2 className="text-2xl font-bold">
-                                        Verifying payment...
+                                        {messages.checkout.verifying_payment}
                                     </h2>
                                     <p className="text-muted-foreground">
-                                        This may take a few moments
+                                        {messages.checkout.verifying_moments}
                                     </p>
                                 </>
                             )}
@@ -53,7 +54,7 @@ export function PaymentVerificationStatus({
                         <>
                             <XCircle className="w-8 h-8 text-red-500" />
                             <p className="text-lg font-medium">
-                                Payment verification failed
+                                {messages.checkout.payment_failed}
                             </p>
                         </>
                     )}

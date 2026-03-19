@@ -14,6 +14,7 @@ import { Text1 } from "@courselit/page-primitives";
 import { Star, Package } from "lucide-react";
 import { PaymentPlan, Course, Constants } from "@courselit/common-models";
 import { getPlanPrice } from "@ui-lib/utils";
+import { messages } from "@courselit/i18n";
 
 const { PaymentPlanType: paymentPlanType } = Constants;
 
@@ -92,7 +93,7 @@ export function PaymentPlanCard({
                                             className="flex items-center gap-1"
                                         >
                                             <Star className="w-3 h-3" />
-                                            Recommended
+                                            {messages.checkout.recommended}
                                         </Badge>
                                     )}
                                     {/* {isRecommended && (
@@ -137,7 +138,7 @@ export function PaymentPlanCard({
                                         theme={theme.theme}
                                         className="text-muted-foreground text-sm"
                                     >
-                                        one-time
+                                        {messages.checkout.one_time}
                                     </Text2>
                                 )}
                             </div>
@@ -148,7 +149,7 @@ export function PaymentPlanCard({
                                         <Package className="w-4 h-4 text-muted-foreground" />
                                         <Text2 theme={theme.theme}>
                                             {planIncludedProducts.length}{" "}
-                                            products included
+                                            {messages.checkout.products_included}
                                         </Text2>
                                     </div>
                                 )}

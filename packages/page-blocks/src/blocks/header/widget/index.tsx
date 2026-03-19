@@ -8,6 +8,7 @@ import {
     Button2,
 } from "@courselit/components-library";
 import { Github, Person } from "@courselit/icons";
+import { messages } from "@courselit/i18n";
 import { WidgetProps } from "@courselit/common-models";
 import MobileNav from "./mobile-nav";
 import {
@@ -183,7 +184,7 @@ export default function Widget({
                                             theme={overiddenTheme}
                                             className="!no-underline"
                                         >
-                                            Dashboard
+                                            {messages.blocks.header_dashboard}
                                         </PrimitiveLink>
                                     </AppLink>
                                 </MenuItem2>
@@ -199,7 +200,7 @@ export default function Widget({
                                         theme={overiddenTheme}
                                         className="!no-underline"
                                     >
-                                        {state.auth.guest ? "Login" : "Logout"}
+                                        {state.auth.guest ? messages.blocks.header_login : messages.blocks.header_logout}
                                     </PrimitiveLink>
                                 </AppLink>
                             </MenuItem2>

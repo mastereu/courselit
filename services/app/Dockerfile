@@ -28,6 +28,7 @@ COPY packages/page-blocks /app/packages/page-blocks
 COPY packages/components-library /app/packages/components-library
 COPY packages/text-editor /app/packages/text-editor
 COPY packages/utils /app/packages/utils
+COPY packages/i18n /app/packages/i18n
 COPY apps/web /app/apps/web
 
 # Install dependencies based on the preferred package manager
@@ -35,6 +36,9 @@ RUN pnpm install
 
 FROM base AS builder
 WORKDIR /app
+
+ARG NEXT_PUBLIC_LOCALE=pt-BR
+ENV NEXT_PUBLIC_LOCALE=${NEXT_PUBLIC_LOCALE}
 
 COPY --from=deps /app/ ./
 

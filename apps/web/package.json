@@ -27,6 +27,7 @@
     "@better-auth/sso": "^1.4.6",
     "@courselit/common-logic": "workspace:^",
     "@courselit/common-models": "workspace:^",
+    "@courselit/i18n": "workspace:^",
     "@courselit/components-library": "workspace:^",
     "@courselit/email-editor": "workspace:^",
     "@courselit/icons": "workspace:^",

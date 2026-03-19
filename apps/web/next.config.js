@@ -22,6 +22,7 @@ const nextConfig = {
     transpilePackages: [
         "@courselit/page-blocks",
         "@courselit/components-library",
+        "@courselit/i18n",
     ],
     serverExternalPackages: ["pug", "liquidjs", "mongoose", "mongodb"],
     experimental: {},

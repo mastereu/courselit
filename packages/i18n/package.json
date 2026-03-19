@@ -1,0 +1,12 @@
+{
+    "name": "@courselit/i18n",
+    "version": "0.1.0",
+    "description": "Internationalization (i18n) module for CourseLit",
+    "private": true,
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "license": "MIT"
+}

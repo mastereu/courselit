@@ -1,3 +1,7 @@
+import { messages } from "../i18n";
+
+const email = messages.email;
+
 const digitalDownloadTemplate = `
 doctype html
 html
@@ -32,24 +36,24 @@ html
                 text-align: center;
             }
     body
-        p   Thank you for signing up for #{courseName}.
+        p   ${email.download_thanks.replace("{courseName}", "#{courseName}")}
         div(class="cta-container") 
             a(
                 href=\`\${downloadLink}\`
                 class="cta"
-            ) Download now
-        p   Best,
+            ) ${email.download_button}
+        p   ${email.download_best}
         p   #{name}
         p 
-            |   To access all of your content, 
-            |   #[a(href=\`\${loginLink}\`) log in] here.
+            |   ${email.course_enroll_access} 
+            |   #[a(href=\`\${loginLink}\`) ${email.course_enroll_login}] ${email.course_enroll_here}
         if !hideCourseLitBranding
             div(class="courselit-branding-container")
                 a(
                     href="https://courselit.app"
                     target="_blank"
                     class="courselit-branding-cta"
-                ) Powered by <strong> CourseLit </strong>
+                ) ${email.powered_by} <strong> CourseLit </strong>
 `;
 
 export default digitalDownloadTemplate;

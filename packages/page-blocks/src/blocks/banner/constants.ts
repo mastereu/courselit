@@ -1,3 +1,5 @@
+import { messages } from "@courselit/i18n";
+
 export const DEFAULT_SUCCESS_MESSAGE =
-    "We have emailed you the content. Thank you!";
-export const DEFAULT_FAILURE_MESSAGE = "That didn't work! Please try again.";
+    messages.blocks.banner_email_success;
+export const DEFAULT_FAILURE_MESSAGE = messages.blocks.banner_email_error;

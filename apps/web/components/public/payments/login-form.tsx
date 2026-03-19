@@ -31,10 +31,11 @@ import { Constants, MembershipEntityType } from "@courselit/common-models";
 import { useRecaptcha } from "@/hooks/use-recaptcha";
 import type { SSOProvider } from "@/app/(with-contexts)/(with-layout)/login/page";
 import RecaptchaScriptLoader from "@components/recaptcha-script-loader";
+import { messages } from "@courselit/i18n";
 
 const loginFormSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    otp: z.string().min(6, "OTP must be at least 6 characters").optional(),
+    email: z.string().email(messages.checkout.invalid_email),
+    otp: z.string().min(6, messages.checkout.otp_min_chars).optional(),
 });
 
 type LoginStep = "email" | "otp" | "complete";
@@ -71,7 +72,7 @@ export function LoginForm({
             toast({
                 title: TOAST_TITLE_ERROR,
                 description:
-                    "reCAPTCHA service not available. Please try again later.",
+                    messages.checkout.recaptcha_unavailable,
                 variant: "destructive",
             });
             setLoading(false);
@@ -82,7 +83,7 @@ export function LoginForm({
         if (!recaptchaToken) {
             toast({
                 title: TOAST_TITLE_ERROR,
-                description: "reCAPTCHA validation failed. Please try again.",
+                description: messages.checkout.recaptcha_validation_failed,
                 variant: "destructive",
             });
             setLoading(false);
@@ -107,7 +108,7 @@ export function LoginForm({
             ) {
                 toast({
                     title: TOAST_TITLE_ERROR,
-                    description: `reCAPTCHA verification failed. ${recaptchaData.score ? `Score: ${recaptchaData.score.toFixed(2)}.` : ""} Please try again.`,
+                    description: `${messages.checkout.recaptcha_verification_failed} ${recaptchaData.score ? `Score: ${recaptchaData.score.toFixed(2)}.` : ""}`,
                     variant: "destructive",
                 });
                 setLoading(false);
@@ -116,7 +117,7 @@ export function LoginForm({
         } catch (err) {
             toast({
                 title: TOAST_TITLE_ERROR,
-                description: "reCAPTCHA verification failed. Please try again.",
+                description: messages.checkout.recaptcha_verification_failed,
                 variant: "destructive",
             });
             setLoading(false);
@@ -146,7 +147,7 @@ export function LoginForm({
         if (!emailValue || !/\S+@\S+\.\S+/.test(emailValue)) {
             form.setError("email", {
                 type: "manual",
-                message: "Please enter a valid email address",
+                message: messages.checkout.valid_email,
             });
             return;
         }
@@ -233,7 +234,7 @@ export function LoginForm({
                                                 <Input
                                                     theme={theme.theme}
                                                     type="email"
-                                                    placeholder="Email address"
+                                                    placeholder={messages.checkout.email_placeholder}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -292,7 +293,7 @@ export function LoginForm({
                                                 <Input
                                                     theme={theme.theme}
                                                     type="text"
-                                                    placeholder="Enter OTP"
+                                                    placeholder={messages.checkout.otp_placeholder}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -307,7 +308,7 @@ export function LoginForm({
                                     disabled={loading}
                                     theme={theme.theme}
                                 >
-                                    Verify OTP
+                                    {messages.checkout.verify_otp}
                                 </Button>
                             </>
                         )}
@@ -326,13 +327,13 @@ export function LoginForm({
                         }}
                         className="w-full"
                     >
-                        Login with SSO
+                        {messages.checkout.login_sso}
                     </Button>
                 )}
             <Caption theme={theme.theme} className="text-center">
                 {LOGIN_FORM_DISCLAIMER}
                 <Link href="/p/terms">
-                    <span className="underline">Terms</span>
+                    <span className="underline">{messages.checkout.terms_link}</span>
                 </Link>
             </Caption>
             <RecaptchaScriptLoader />

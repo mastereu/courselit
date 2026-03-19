@@ -219,6 +219,9 @@ importers:
       '@courselit/email-editor':
         specifier: workspace:^
         version: link:../../packages/email-editor
+      '@courselit/i18n':
+        specifier: workspace:^
+        version: link:../../packages/i18n
       '@courselit/icons':
         specifier: workspace:^
         version: link:../../packages/icons
@@ -573,6 +576,9 @@ importers:
       '@courselit/common-models':
         specifier: workspace:^
         version: link:../common-models
+      '@courselit/i18n':
+        specifier: workspace:^
+        version: link:../i18n
       '@courselit/icons':
         specifier: workspace:^
         version: link:../icons
@@ -804,6 +810,8 @@ importers:
         specifier: ^7.4.0
         version: 7.18.0(eslint@8.57.1)(typescript@4.9.5)
 
+  packages/i18n: {}
+
   packages/icons:
     dependencies:
       '@radix-ui/react-icons':
@@ -883,6 +891,9 @@ importers:
       '@courselit/components-library':
         specifier: workspace:^
         version: link:../components-library
+      '@courselit/i18n':
+        specifier: workspace:^
+        version: link:../i18n
       '@courselit/icons':
         specifier: workspace:^
         version: link:../icons

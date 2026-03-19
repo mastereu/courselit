@@ -60,6 +60,7 @@
     "dependencies": {
         "@courselit/common-models": "workspace:^",
         "@courselit/components-library": "workspace:^",
+        "@courselit/i18n": "workspace:^",
         "@courselit/text-editor": "workspace:^",
         "@tiptap/core": "^3.0.0",
         "@tiptap/static-renderer": "^3.10.7",

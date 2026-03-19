@@ -55,6 +55,7 @@
     "gitHead": "fca7d2f8455c835f1c185a1ebc8513c6269ebe5b",
     "dependencies": {
         "@courselit/common-models": "workspace:^",
+        "@courselit/i18n": "workspace:^",
         "@courselit/icons": "workspace:^",
         "@courselit/page-models": "workspace:^",
         "@courselit/text-editor": "workspace:^",

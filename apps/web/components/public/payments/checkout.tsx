@@ -37,6 +37,7 @@ import { Button, Header3, Text1 } from "@courselit/page-primitives";
 import { PaymentPlanCard } from "./payment-plan-card";
 import { MobileOrderSummary, DesktopOrderSummary } from "./order-summary";
 import { SSOProvider } from "@/app/(with-contexts)/(with-layout)/login/page";
+import { messages } from "@courselit/i18n";
 const { PaymentPlanType: paymentPlanType } = Constants;
 
 export interface Product {
@@ -61,7 +62,7 @@ export interface CheckoutScreenProps {
 }
 
 const formSchema = z.object({
-    selectedPlan: z.string().min(1, "Please select a plan"),
+    selectedPlan: z.string().min(1, messages.checkout.select_plan),
     joiningReason: z.string().optional(),
 });
 
@@ -130,7 +131,7 @@ export default function Checkout({
                 }
             } catch (err) {
                 toast({
-                    title: "Error",
+                    title: messages.checkout.error,
                     description: err.message,
                     variant: "destructive",
                 });
@@ -246,7 +247,7 @@ export default function Checkout({
             }
         } catch (err) {
             toast({
-                title: "Error",
+                title: messages.checkout.error,
                 description: err.message,
                 variant: "destructive",
             });
@@ -281,7 +282,7 @@ export default function Checkout({
             router.replace(`/checkout/verify?id=${verifyResponse.purchaseId}`);
         } catch (err: any) {
             toast({
-                title: "Error",
+                title: messages.checkout.error,
                 description: err.message,
                 variant: "destructive",
             });
@@ -356,14 +357,14 @@ export default function Checkout({
                                     )}
                                     {membershipStatus ===
                                     Constants.MembershipStatus.ACTIVE
-                                        ? "Already owned"
-                                        : "Access Denied"}
+                                        ? messages.checkout.already_owned
+                                        : messages.checkout.access_denied}
                                 </Header3>
                                 <Text1 theme={theme.theme}>
                                     {membershipStatus ===
                                     Constants.MembershipStatus.ACTIVE
-                                        ? "You already have access to this resource."
-                                        : "You have been rejected and cannot proceed with the checkout."}
+                                        ? messages.checkout.already_have_access
+                                        : messages.checkout.access_rejected}
                                 </Text1>
                                 {membershipStatus ===
                                     Constants.MembershipStatus.ACTIVE && (
@@ -389,7 +390,7 @@ export default function Checkout({
                                         }}
                                         theme={theme.theme}
                                     >
-                                        Go to the resource
+                                        {messages.checkout.go_to_resource}
                                     </Button>
                                 )}
                             </div>
@@ -397,7 +398,7 @@ export default function Checkout({
                             <>
                                 <div className="space-y-4">
                                     <Header3 theme={theme.theme}>
-                                        Personal Information
+                                        {messages.checkout.personal_info}
                                     </Header3>
                                     {!isLoggedIn ? (
                                         <LoginForm
@@ -412,13 +413,13 @@ export default function Checkout({
                                         <div className="text-sm space-y-2">
                                             <Text1 theme={theme.theme}>
                                                 <span className="font-semibold">
-                                                    Email:
+                                                    {messages.checkout.email_label}
                                                 </span>{" "}
                                                 {userEmail}
                                             </Text1>
                                             <Text1 theme={theme.theme}>
                                                 <span className="font-semibold">
-                                                    Name:
+                                                    {messages.checkout.name_label}
                                                 </span>{" "}
                                                 {userName}
                                             </Text1>
@@ -432,7 +433,7 @@ export default function Checkout({
                                     >
                                         <div className="mb-6 space-y-4">
                                             <Header3 theme={theme.theme}>
-                                                Select Your Plan
+                                                {messages.checkout.select_your_plan}
                                             </Header3>
                                             <FormField
                                                 control={form.control}
@@ -514,13 +515,13 @@ export default function Checkout({
                                                         <FormItem className="mb-6">
                                                             <FormLabel className="text-sm font-semibold mb-4">
                                                                 {product.joiningReasonText ||
-                                                                    "Reason for joining"}
+                                                                    messages.checkout.reason_for_joining}
                                                             </FormLabel>
                                                             <FormControl>
                                                                 <textarea
                                                                     className="w-full border rounded p-2"
                                                                     {...field}
-                                                                    placeholder="Please provide your reason for joining"
+                                                                    placeholder={messages.checkout.reason_placeholder}
                                                                 />
                                                             </FormControl>
                                                             <FormMessage />
@@ -547,8 +548,8 @@ export default function Checkout({
                                             theme={theme.theme}
                                         >
                                             {isSubmitting
-                                                ? "Working..."
-                                                : "Complete Purchase"}
+                                                ? messages.checkout.working
+                                                : messages.checkout.complete_purchase}
                                         </Button>
                                     </form>
                                 </FormProvider>

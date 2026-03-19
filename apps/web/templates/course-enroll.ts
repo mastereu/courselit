@@ -1,3 +1,7 @@
+import { messages } from "../i18n";
+
+const email = messages.email;
+
 const courseEnrollTemplate = `
 doctype html
 html
@@ -32,17 +36,17 @@ html
                 text-align: center;
             }
     body
-        p   You have been enrolled in a course: <strong> #{courseName} </strong>.
+        p   ${email.course_enroll_body} <strong> #{courseName} </strong>.
         p 
-            |   To access all of your content, 
-            |   #[a(href=\`\${loginLink}\`) log in] here.
+            |   ${email.course_enroll_access} 
+            |   #[a(href=\`\${loginLink}\`) ${email.course_enroll_login}] ${email.course_enroll_here}
         if !hideCourseLitBranding
             div(class="courselit-branding-container")
                 a(
                     href="https://courselit.app"
                     target="_blank"
                     class="courselit-branding-cta"
-                ) Powered by <strong> CourseLit </strong>
+                ) ${email.powered_by} <strong> CourseLit </strong>
 `;
 
 export default courseEnrollTemplate;

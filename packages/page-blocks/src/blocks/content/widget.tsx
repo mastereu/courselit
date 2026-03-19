@@ -28,6 +28,7 @@ import {
     Section,
 } from "@courselit/page-primitives";
 import { ThemeStyle } from "@courselit/page-models";
+import { messages } from "@courselit/i18n";
 
 interface CourseWithGroups extends Course {
     groups: Group[];
@@ -117,7 +118,7 @@ export default function Widget({
             }
         } catch (err: any) {
             toast({
-                title: "Error",
+                title: messages.blocks.content_error,
                 description: err.message,
                 variant: "destructive",
             });

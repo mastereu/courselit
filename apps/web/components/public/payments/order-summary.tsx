@@ -12,28 +12,29 @@ import { Text1, Header3, Header4 } from "@courselit/page-primitives";
 import { PaymentPlan, Constants } from "@courselit/common-models";
 import { getPlanPrice } from "@ui-lib/utils";
 import { CHECKOUT_PAGE_ORDER_SUMMARY } from "@ui-config/strings";
+import { messages } from "@courselit/i18n";
 
 const { PaymentPlanType: paymentPlanType } = Constants;
 
 function getPlanDescription(plan: PaymentPlan, currencySymbol: string): string {
     if (!plan) {
-        return "N/A";
+        return messages.checkout.na;
     }
 
     switch (plan.type) {
         case paymentPlanType.FREE:
-            return "Free plan";
+            return messages.checkout.free_plan;
         case paymentPlanType.ONE_TIME:
-            return `One-time payment of ${currencySymbol}${plan.oneTimeAmount?.toFixed(2)}`;
+            return `${messages.checkout.one_time_payment} ${currencySymbol}${plan.oneTimeAmount?.toFixed(2)}`;
         case paymentPlanType.SUBSCRIPTION:
             if (plan.subscriptionYearlyAmount) {
-                return `Billed annually at ${currencySymbol}${plan.subscriptionYearlyAmount.toFixed(2)}`;
+                return `${messages.checkout.billed_annually} ${currencySymbol}${plan.subscriptionYearlyAmount.toFixed(2)}`;
             }
-            return `${currencySymbol}${plan.subscriptionMonthlyAmount?.toFixed(2)} per month`;
+            return `${currencySymbol}${plan.subscriptionMonthlyAmount?.toFixed(2)} ${messages.checkout.per_month}`;
         case paymentPlanType.EMI:
-            return `${currencySymbol}${plan.emiAmount?.toFixed(2)} per month for ${plan.emiTotalInstallments} months`;
+            return `${currencySymbol}${plan.emiAmount?.toFixed(2)} ${messages.checkout.per_month_for} ${plan.emiTotalInstallments} ${messages.checkout.months}`;
         default:
-            return "N/A";
+            return messages.checkout.na;
     }
 }
 
@@ -90,8 +91,8 @@ export function MobileOrderSummary({
                                     }
                                     theme={theme.theme}
                                 >
-                                    {isOrderSummaryOpen ? "Hide" : "Show"} order
-                                    summary
+                                    {isOrderSummaryOpen ? messages.checkout.hide_order : messages.checkout.show_order}{" "}
+                                    {messages.checkout.order_summary_suffix}
                                     <ChevronUp
                                         className={`h-4 w-4 ml-1 transition-transform duration-200 ${isOrderSummaryOpen ? "" : "rotate-180"}`}
                                     />
@@ -118,7 +119,7 @@ export function MobileOrderSummary({
                         onOpenChange={setIsOrderSummaryOpen}
                     >
                         <CollapsibleTrigger className="sr-only">
-                            Toggle order summary
+                            {messages.checkout.toggle_order_summary}
                         </CollapsibleTrigger>
                         <CollapsibleContent
                             style={{
@@ -160,7 +161,7 @@ export function MobileOrderSummary({
                                             }}
                                         >
                                             <Header3 theme={theme.theme}>
-                                                Total
+                                                {messages.checkout.total}
                                             </Header3>
                                             <div className="text-right flex items-center">
                                                 <Header4 className="font-medium">
@@ -236,7 +237,7 @@ export function DesktopOrderSummary({
                             }}
                         >
                             <div className="flex justify-between items-center">
-                                <Header4 theme={theme.theme}>Total</Header4>
+                                <Header4 theme={theme.theme}>{messages.checkout.total}</Header4>
                                 <Header4 theme={theme.theme}>
                                     {currencySymbol}
                                     {getPlanPrice(selectedPlan).amount.toFixed(
